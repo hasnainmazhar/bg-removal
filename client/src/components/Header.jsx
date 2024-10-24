@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { assets } from "../assets/assets";
+import { AppContext } from "../context/AppContext";
 
 const Header = () => {
+  const { removeBg } = useContext(AppContext);
+
   return (
     <div className="flex items-center justify-between max-sm:flex-col-reverse gap-y-10 px-4 mt-10 lg:px-44 sm:mt-20">
       {/* ========== Left Side ========== */}
@@ -10,8 +13,8 @@ const Header = () => {
           Remove the <br className="max-md:hidden" />
           <span className="bg-gradient-to-r from-violet-600 to-fuchsia-500 bg-clip-text text-transparent">
             background
-          </span>
-          {' '}from <br className="max-md:hidden" /> images for free!
+          </span>{" "}
+          from <br className="max-md:hidden" /> images for free!
         </h1>
         <p className="my-6 text-[15px] to-gray-500">
           Instantly remove backgrounds for polished images, perfect for any
@@ -19,7 +22,7 @@ const Header = () => {
           for flawless, ready-to-use images.
         </p>
         <div>
-          <input type="file" id="upload1" hidden />
+          <input onChange={ e => removeBg(e.target.files[0])} accept="image/*" type="file" id="upload1" hidden />
           <label
             className="inline-flex gap-3 px-8 py-3.5 rounded-full cursor-pointer bg-gradient-to-r from-violet-600 to-fuchsia-500 m-auto hover:scale-105 transition-all duration-700"
             htmlFor="upload1"
